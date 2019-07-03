@@ -4,10 +4,10 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "webpack-dev-server",
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js",
     "start": "yarn run build:app && serve -p 8080 dist/",
     "build:app": "yarn run build:webpack",
-    "build:webpack": "cross-env NODE_ENV=production webpack"
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
