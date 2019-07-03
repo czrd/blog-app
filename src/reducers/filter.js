@@ -1,6 +1,6 @@
 import { CLEAR_FILTER, SET_FILTER } from '../actionTypes';
 
-export const filterReducer = (state = false, action) => {
+export default function filterReducer(state = false, action) {
   switch (action.type) {
     case SET_FILTER: {
       return action.filter;
@@ -11,4 +11,4 @@ export const filterReducer = (state = false, action) => {
     default:
       return state;
   }
-};
+}

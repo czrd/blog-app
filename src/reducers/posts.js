@@ -1,6 +1,6 @@
 import { CREATE_POST, EDIT_POST } from '../actionTypes';
 
-export const postsReducer = (state = [], action) => {
+export default function postsReducer(state = [], action) {
   switch (action.type) {
     case CREATE_POST: {
       const { type, post } = action;
@@ -18,4 +18,4 @@ export const postsReducer = (state = [], action) => {
     default:
       return state;
   }
-};
+}
