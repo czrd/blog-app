@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js"',
+  entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
     filename: 'main-[hash].js'
@@ -17,7 +17,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extenstions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   plugins: [
     new HtmlWebpackPlugin({
