@@ -1,4 +1,4 @@
-import { CREATE_POST, EDIT_POST } from '../actionTypes';
+import { CREATE_POST, DELETE_POST, EDIT_POST } from '../actionTypes';
 
 export default function postsReducer(state = [], action) {
   switch (action.type) {
@@ -11,7 +11,7 @@ export default function postsReducer(state = [], action) {
       const { type, id, post } = action;
       return state.map((oldPost, index) => (id === index ? { ...oldPost, ...post, updated: Date.now() } : oldPost));
     }
-    case DELTE_POST: {
+    case DELETE_POST: {
       const { type, id } = action;
       return state.filter((post, index) => action.id !== index);
     }
