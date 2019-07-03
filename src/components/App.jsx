@@ -15,7 +15,7 @@ const App = ({ store }) => (
         <ConnectedFilterList />
       </div>
     </div>
-    <DevTools />
+    {process.env.NODE_ENV !== 'production' && <DevTools />}
   </Provider>
 );
 
