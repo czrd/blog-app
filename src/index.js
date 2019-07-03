@@ -18,16 +18,29 @@ const enhancer = compose(
   persistState(getSessionKey())
 );
 
-let store = createStore(appReducer, {}, DevTools.instrument());
-
+let store = createStore(appReducer, {}, enhancer);
 const initialState = store.getState();
-store.dispatch(createUser('dan', 'Daniel'));
-store.dispatch(createUser('john', 'John'));
-store.dispatch(
-  createPost('dan', { title: 'hello', text: 'hello, world!', category: 'tech' })
-);
-store.dispatch(
-  createPost('john', { title: "John's post", text: 'hi!', category: 'math' })
-);
+
+if (!initialState.users || initialState.users.length === 0) {
+  store.dispatch(createUser('dan', 'Daniel'));
+  store.dispatch(createUser('john', 'John'));
+}
+
+if (!initialState.posts || initialState.posts.length === 0) {
+  store.dispatch(
+    createPost('dan', {
+      title: 'hello',
+      text: 'hello, world!',
+      category: 'tech'
+    })
+  );
+  store.dispatch(
+    createPost('john', {
+      title: "John's post",
+      text: 'hi!',
+      category: 'math'
+    })
+  );
+}
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'));
