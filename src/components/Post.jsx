@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeStamp from './Timestamp';
 import User from './User';
 
 const Post = ({ user, title, text, category, created, updated }) => (
