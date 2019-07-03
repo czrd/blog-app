@@ -4,6 +4,10 @@ import { createPost, createUser } from './actions';
 import App from './components/App';
 import configureStore from './store';
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 const store = configureStore();
 const initialState = store.getState();
 
