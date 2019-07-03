@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import ConnectedFilterList from '../containers/ConnectedFilterList';
 import ConnectedPostList from '../containers/ConnectedPostList';
+import DevTools from '../containers/DevTools';
 
 const App = ({ store }) => (
   <Provider store={store}>
@@ -14,6 +15,7 @@ const App = ({ store }) => (
         <ConnectedFilterList />
       </div>
     </div>
+    <DevTools />
   </Provider>
 );
 
