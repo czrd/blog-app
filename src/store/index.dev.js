@@ -1,7 +1,7 @@
 import { persistState } from 'redux-devtools';
 import DevTools from '../containers/DevTools';
 import { createStore } from 'redux';
-import appReducer from './reducers';
+import appReducer from '../reducers';
 import { compose } from 'redux';
 
 function getSessionKey() {
