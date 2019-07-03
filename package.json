@@ -4,8 +4,10 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start:dev": "webpack-dev-server",
+    "start": "npm run build:app && serve -p 8080 dist/",
+    "build:app": "npm run build:webpack",
+    "build:webpack": "cross-env NODE_ENV=production webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -22,9 +24,12 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "serve": "^11.0.2",
+    "shx": "^0.3.2"
   }
 }
