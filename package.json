@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "webpack-dev-server",
-    "start": "npm run build:app && serve -p 8080 dist/",
-    "build:app": "npm run build:webpack",
+    "start": "yarn run build:app && serve -p 8080 dist/",
+    "build:app": "yarn run build:webpack",
     "build:webpack": "cross-env NODE_ENV=production webpack"
   },
   "devDependencies": {
