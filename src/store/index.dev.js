@@ -1,8 +1,8 @@
+import { compose, createStore } from 'redux';
 import { persistState } from 'redux-devtools';
 import DevTools from '../containers/DevTools';
-import { createStore } from 'redux';
 import appReducer from '../reducers';
-import { compose } from 'redux';
+import middleware from './middleware';
 
 function getSessionKey() {
   const matches = window.location.href.match(/[?&]debug=([^&#]+)\b/);
@@ -10,6 +10,7 @@ function getSessionKey() {
 }
 
 const enhancer = compose(
+  middleware,
   DevTools.instrument(),
   persistState(getSessionKey())
 );
@@ -17,9 +18,7 @@ const enhancer = compose(
 export default function configureStore(initialState) {
   const store = createStore(appReducer, initialState, enhancer);
   if (module.hot) {
-    module.hot.accept('../reducers/index', () =>
-      store.replaceReducer(require('../reducers/index').default)
-    );
+    module.hot.accept('../reducers/index', () => store.replaceReducer(require('../reducers/index').default));
   }
   return store;
 }
