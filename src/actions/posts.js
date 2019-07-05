@@ -1,4 +1,5 @@
-import { CREATE_POST, DELETE_POST, EDIT_POST } from '../actionTypes';
+import { CREATE_POST, DELETE_POST, EDIT_POST, FETCH_POSTS_FAILURE, FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS } from '../actionTypes';
+import { thunkCreator } from './utils';
 
 export const createPost = (user, post) => {
   const { title, text, category = 'random' } = post;
@@ -26,3 +27,9 @@ export const deletePost = id => {
     id
   };
 };
+
+export const fetchPosts = () =>
+  thunkCreator({
+    types: [FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE],
+    promise: fetch('http://localhost:8080/api/posts').then(response => response.json())
+  });
