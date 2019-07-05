@@ -7,7 +7,7 @@ const Post = ({ user, title, text, category, created, updated }) => (
     <b>{title}</b>
     <i>
       {' ~ '}
-      <User {...user} />
+      <User {...user} />: {text}
     </i>
     <br />
     (Created at: <TimeStamp data={created} />, Updated at: <TimeStamp data={updated} />)
