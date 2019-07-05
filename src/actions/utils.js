@@ -1,5 +1,5 @@
 export const thunkCreator = action => {
-  const { ...rest, types, promise} = action;
+  const { types, promise, ...rest } = action;
   const [REQUESTED, RESOLVED, REJECTED] = types;
 
   return dispatch => {
@@ -12,7 +12,7 @@ export const thunkCreator = action => {
       })
       .catch(error => {
         dispatch({ ...rest, type: REJECTED, error });
-        throw error
+        throw error;
       });
   };
 };
