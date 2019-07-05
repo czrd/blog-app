@@ -33,3 +33,12 @@ export const fetchPosts = () =>
     types: [FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE],
     promise: fetch('http://localhost:8080/api/posts').then(response => response.json())
   });
+
+const getUsernamesFromPosts = posts => {
+  posts.reduce((usernames, post) => {
+    if (!usernames.include(post.user)) {
+      return [...usernames, post.user];
+    }
+    return usernames;
+  }, []);
+};
