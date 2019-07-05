@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createPost, createUser } from './actions';
+import { createUser, fetchPosts } from './actions';
 import App from './components/App';
 import configureStore from './store';
 
@@ -16,21 +16,6 @@ if (!initialState.users || initialState.users.length === 0) {
   store.dispatch(createUser('john', 'John'));
 }
 
-if (!initialState.posts || initialState.posts.length === 0) {
-  store.dispatch(
-    createPost('dan', {
-      title: 'hello',
-      text: 'hello, world!',
-      category: 'tech'
-    })
-  );
-  store.dispatch(
-    createPost('john', {
-      title: "John's post",
-      text: 'hi!',
-      category: 'math'
-    })
-  );
-}
+store.dispatch(fetchPosts());
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'));
