@@ -1,4 +1,4 @@
-import { CREATE_POST, DELETE_POST, EDIT_POST } from '../actionTypes';
+import { CREATE_POST, DELETE_POST, EDIT_POST, FETCH_POSTS_SUCCESS } from '../actionTypes';
 
 export default function postsReducer(state = [], action) {
   switch (action.type) {
@@ -14,6 +14,9 @@ export default function postsReducer(state = [], action) {
     case DELETE_POST: {
       const { type, id } = action;
       return state.filter((post, index) => action.id !== index);
+    }
+    case FETCH_POSTS_SUCCESS: {
+      return action.result;
     }
     default:
       return state;
