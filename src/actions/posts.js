@@ -44,17 +44,18 @@ export const fetchPosts = () =>
     )
   });
 
-const getUsernamesFromPosts = posts => {
+const getUsernamesFromPosts = posts =>
   posts.reduce((usernames, post) => {
-    if (!usernames.include(post.user)) {
+    if (!usernames.includes(post.user)) {
       return [...usernames, post.user];
     }
     return usernames;
   }, []);
-};
 
 export const fetchPostsAndUsers = () => dispatch =>
   fetchPosts()(dispatch)
     .then(getUsernamesFromPosts)
     .then(usernames => fetchUsersByUsernames(usernames)(dispatch))
-    .catch(err => console.err('could not fetch posts and users:', err.message));
+    .catch(err =>
+      console.error('could not fetch posts and users:', err.message)
+    );
