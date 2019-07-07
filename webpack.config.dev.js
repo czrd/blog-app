@@ -4,7 +4,7 @@ const prodConfig = require('./webpack.config.prod');
 module.exports = Object.assign(prodConfig, {
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-hot-middleware/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
     prodConfig.entry
   ],
