@@ -1,5 +1,13 @@
-import { CREATE_POST, DELETE_POST, EDIT_POST, FETCH_POSTS_FAILURE, FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS } from '../actionTypes';
+import {
+  CREATE_POST,
+  DELETE_POST,
+  EDIT_POST,
+  FETCH_POSTS_FAILURE,
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS
+} from '../actionTypes';
 import { thunkCreator } from './utils';
+import { fetchUsersByUsernames } from './users';
 
 export const createPost = (user, post) => {
   const { title, text, category = 'random' } = post;
@@ -31,7 +39,9 @@ export const deletePost = id => {
 export const fetchPosts = () =>
   thunkCreator({
     types: [FETCH_POSTS_REQUEST, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE],
-    promise: fetch('http://localhost:8080/api/posts').then(response => response.json())
+    promise: fetch('http://localhost:8080/api/posts').then(response =>
+      response.json()
+    )
   });
 
 const getUsernamesFromPosts = posts => {
@@ -42,3 +52,9 @@ const getUsernamesFromPosts = posts => {
     return usernames;
   }, []);
 };
+
+export const fetchPostsAndUsers = () => dispatch =>
+  fetchPosts()(dispatch)
+    .then(getUsernamesFromPosts)
+    .then(usernames => fetchUsersByUsernames(usernames)(dispatch))
+    .catch(err => console.err('could not fetch posts and users:', err.message));
