@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import ConenctedErrorMessage from '../containers/ConnectedErrorMessage';
 import ConnectedFilterList from '../containers/ConnectedFilterList';
-import ConnectedPostList from '../containers/ConnectedPostList';
 import ConnectedLoading from '../containers/ConnectedLoading';
+import ConnectedPostList from '../containers/ConnectedPostList';
 import DevTools from '../containers/DevTools';
 
 const App = ({ store }) => (
@@ -17,6 +18,9 @@ const App = ({ store }) => (
       </div>
       <div>
         <ConnectedLoading />
+      </div>
+      <div>
+        <ConenctedErrorMessage />
       </div>
     </div>
     {process.env.NODE_ENV !== 'production' && <DevTools />}
